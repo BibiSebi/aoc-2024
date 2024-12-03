@@ -19,16 +19,16 @@ const splitByLine = file.split("\n");
 
 const splitByPair = splitByLine.map((value) => value.split("   "));
 
-const col1: number[] = [];
-const col2: number[] = [];
+const leftList: number[] = [];
+const rightList: number[] = [];
 
 splitByPair.forEach((value) => {
-  col1.push(parseInt(value[0]));
-  col2.push(parseInt(value[1]));
+  leftList.push(parseInt(value[0]));
+  rightList.push(parseInt(value[1]));
 });
 
-const col1Sorted = col1.sort((a, b) => (a > b ? 1 : -1));
-const col2Sorted = col2.sort((a, b) => (a > b ? 1 : -1));
+const col1Sorted = leftList.sort((a, b) => (a > b ? 1 : -1));
+const col2Sorted = rightList.sort((a, b) => (a > b ? 1 : -1));
 
 const distance = col1Sorted.reduce((acc, val, idx) => {
   const dif =
@@ -37,4 +37,24 @@ const distance = col1Sorted.reduce((acc, val, idx) => {
   return acc + dif;
 }, 0);
 
-console.log(distance);
+console.log("Day 1 - Task 1 -->", distance);
+
+// const similarityMap = new Map<number, number>();
+const calSimilarityScore = leftList.reduce((acc, currentVal) => {
+  // const valueFromMap = similarityMap.get(currentVal);
+
+  // if (valueFromMap) {
+  //   console.log(valueFromMap);
+
+  //   return acc + valueFromMap;
+  // }
+
+  const nrOfOccurrences = rightList.filter(
+    (rightVal) => currentVal === rightVal
+  ).length;
+
+  // similarityMap.set(currentVal, nrOfOccurrences);
+  return acc + currentVal * nrOfOccurrences;
+}, 0);
+
+console.log("Day 1 - Task 2 -->", calSimilarityScore);
