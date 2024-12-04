@@ -1,7 +1,7 @@
 import { readFileInput } from "../utils/index.ts";
 
 // Get the content of the input file
-const file = readFileInput("input-day-1-task-1.txt");
+const file = readFileInput("input-day-1.txt");
 
 // Split it by line
 const splitByLine = file.split("\n");
@@ -42,7 +42,7 @@ const calculateDistance = () => {
 
 // -------------- Task 2 --------------
 // const similarityMap = new Map<number, number>();
-const calSimilarityScore = () => {
+const calculateSimilarityScore = () => {
   const score = leftList.reduce((acc, currentVal) => {
     // const valueFromMap = similarityMap.get(currentVal);
     // if (valueFromMap) {
@@ -65,5 +65,5 @@ const calSimilarityScore = () => {
 
 export const runDay1 = () => {
   calculateDistance();
-  calSimilarityScore();
+  calculateSimilarityScore();
 };
